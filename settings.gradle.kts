@@ -1,0 +1,1 @@
+rootProject.name = "grafos-2026.1"
