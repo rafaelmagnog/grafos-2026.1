@@ -9,8 +9,6 @@ Implementação em Java de estruturas e algoritmos fundamentais de **Teoria dos 
 - [Sobre o projeto](#sobre-o-projeto)
 - [Tecnologias](#tecnologias)
 - [Estrutura do projeto](#estrutura-do-projeto)
-- [Como executar](#como-executar)
-- [Conceitos implementados](#conceitos-implementados)
 - [Exemplos de uso](#exemplos-de-uso)
 
 ---
@@ -31,10 +29,9 @@ Este repositório contém a modelagem de grafos dirigidos e não dirigidos, com 
 
 | Ferramenta | Versão |
 |---|---|
-| Java | 17+ |
-| Gradle (Kotlin DSL) | 8.x |
-| Lombok | 1.18.x |
-| JUnit Jupiter | 5.10.x |
+| Java | 25+ |
+| Gradle| 8.x |
+| Lombok | 1.18.44 |
 
 ---
 
@@ -56,50 +53,6 @@ build.gradle.kts               # Configuração do build
 
 ---
 
-## Como executar
-
-### Pré-requisitos
-
-- JDK 17 ou superior
-- Gradle (ou usar o wrapper `./gradlew` incluído no projeto)
-
-### Build
-
-```bash
-./gradlew build
-```
-
-### Executar a demonstração
-
-```bash
-./gradlew run
-```
-
-> **Nota:** caso o plugin `application` não esteja configurado, rode diretamente pela sua IDE (IntelliJ IDEA recomendado) executando a classe `Main`.
-
-### Testes
-
-```bash
-./gradlew test
-```
-
----
-
-## Conceitos implementados
-
-| Conceito | Classe | Método |
-|---|---|---|
-| Ordem do grafo (nº de vértices) | `Grafo` | `getOrdem()` |
-| Tamanho do grafo (nº de arestas) | `Grafo` | `getTamanho()` |
-| Grau de vértice | `Grafo` | `getGrau(nome)` |
-| In-degree (grafo dirigido) | `Grafo` | `getInDegree(nome)` |
-| Out-degree (grafo dirigido) | `Grafo` | `getOutDegree(nome)` |
-| Lista de adjacências | `Grafo` | `getAdjacencias(nome)` |
-| Lista de adjacentes | `Grafo` | `getAdjacentes(nome)` |
-| Impressão formal do grafo | `Grafo` | `imprimirGrafo()` |
-| Relatório por vértice | `Grafo` | `gerarRelatorioVertice(nome)` |
-
----
 
 ## Exemplos de uso
 
