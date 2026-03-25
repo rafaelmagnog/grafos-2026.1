@@ -4,70 +4,35 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		Grafo h = new Grafo("H");
+		// GRAFO NÃO DIRECIONADO
+		Grafo grafo = new Grafo("R");
 		
-		Vertice u = new Vertice();
-		u.setValorVertice("u");
+		grafo.adicionaVertices("u", "v", "w", "x", "y");
 		
-		Vertice v = new Vertice();
-		v.setValorVertice("v");
+		grafo.addAresta("a", "u", "v");
+		grafo.addAresta("b", "u", "u");
+		grafo.addAresta("c", "v", "w");
+		grafo.addAresta("d", "w", "x");
+		grafo.addAresta("e", "v", "x");
+		grafo.addAresta("f", "w", "x");
+		grafo.addAresta("g", "u", "x");
+		grafo.addAresta("h", "x", "y");
 		
-		Vertice w = new Vertice();
-		w.setValorVertice("w");
+		System.out.println("===== GRAFO R (Não direcionado) =====");
+		grafo.imprimirGrafo();
 		
-		Vertice x = new Vertice();
-		x.setValorVertice("x");
 		
-		Vertice y = new Vertice();
-		y.setValorVertice("y");
+		// GRAFO DIRECIONADO
+		Grafo grafoDirigido = new Grafo(true);
 		
-		h.addVertice(u);
-		h.addVertice(v);
-		h.addVertice(w);
-		h.addVertice(x);
-		h.addVertice(y);
+		grafoDirigido.adicionaVertices("A", "B", "C", "D");
 		
-		Aresta a = new Aresta();
-		a.setNomeAresta("a");
-		a.setVertices(u, v);
+		grafoDirigido.addAresta("a1", "A", "B");
+		grafoDirigido.addAresta("a2", "B", "C");
+		grafoDirigido.addAresta("a3", "C", "A");
+		grafoDirigido.addAresta("a4", "C", "D");
 		
-		Aresta b = new Aresta();
-		b.setNomeAresta("b");
-		b.setVertices(u, u);
-		
-		Aresta c = new Aresta();
-		c.setNomeAresta("c");
-		c.setVertices(v, w);
-		
-		Aresta d = new Aresta();
-		d.setNomeAresta("d");
-		d.setVertices(w, x);
-		
-		Aresta e = new Aresta();
-		e.setNomeAresta("e");
-		e.setVertices(v, x);
-		
-		Aresta f = new Aresta();
-		f.setNomeAresta("f");
-		f.setVertices(w, x);
-		
-		Aresta g = new Aresta();
-		g.setNomeAresta("g");
-		g.setVertices(u, x);
-		
-		Aresta h1 = new Aresta();
-		h1.setNomeAresta("h");
-		h1.setVertices(x, y);
-		
-		h.addAresta(a);
-		h.addAresta(b);
-		h.addAresta(c);
-		h.addAresta(d);
-		h.addAresta(e);
-		h.addAresta(f);
-		h.addAresta(g);
-		h.addAresta(h1);
-		
-		h.imprimirGrafo();
+		System.out.println("\n===== GRAFO DIRECIONADO =====");
+		grafoDirigido.imprimirGrafo();
 	}
 }

@@ -1,12 +1,15 @@
 package teoria.grafos;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@AllArgsConstructor
+@Getter
+@Setter
 public class Vertice {
 	
 	private String valorVertice;
-	
-	public void setValorVertice(String valorVert) {
-		this.valorVertice = valorVert;
-	}
 	
 	@Override
 	public String toString() {

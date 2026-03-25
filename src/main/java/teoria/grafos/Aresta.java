@@ -1,29 +1,27 @@
 package teoria.grafos;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@AllArgsConstructor
+@Setter
+@Getter
 public class Aresta {
 	
-	private String nomeAresta;
-	private Vertice vertice1;
-	private Vertice vertice2;
+	private String nomeA;
+	private Vertice verticeOrigem;
+	private Vertice verticeDestino;
 	
-	public void setNomeAresta(String nome) {
-		this.nomeAresta = nome;
+	//Construtor para arestas sem nome
+	public Aresta(Vertice v1, Vertice v2) {
+		this.verticeOrigem = v1;
+		this.verticeDestino = v2;
 	}
 	
-	public String getNomeAresta() {
-		return nomeAresta;
-	}
-	
-	public Vertice getVertice1() {
-		return vertice1;
-	}
-	
-	public Vertice getVertice2() {
-		return vertice2;
-	}
-	
-	public void setVertices(Vertice v1, Vertice v2) {
-		this.vertice1 = v1;
-		this.vertice2 = v2;
+	@Override
+	public String toString() {
+		String nomeAresta = nomeA != null ? nomeA : "";
+		return nomeAresta + "{" + verticeOrigem + "," + verticeDestino + "}";
 	}
 }
