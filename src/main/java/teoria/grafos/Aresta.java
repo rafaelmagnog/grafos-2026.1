@@ -5,8 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 @AllArgsConstructor
-@Setter
 @Getter
+@Setter
 public class Aresta {
 	
 	private String nomeA;
