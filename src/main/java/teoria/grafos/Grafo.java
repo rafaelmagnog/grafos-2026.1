@@ -227,6 +227,133 @@ public class Grafo {
 			System.out.println(gerarRelatorioVertice(v.getValorVertice()));
 		}
 	}
+
+	public void exibeMatrizAdjacencia() {
+		int n = vertices.size();
+		int[][] matriz = new int[n][n];
+
+		for (Aresta a : arestas) {
+			int origemIndex = vertices.indexOf(a.getVerticeOrigem());
+			int destinoIndex = vertices.indexOf(a.getVerticeDestino());
+			if (origemIndex < 0 || destinoIndex < 0) {
+				continue;
+			}
+
+			if (eDirigido) {
+				matriz[origemIndex][destinoIndex]++;
+			} else {
+				if (origemIndex == destinoIndex) {
+					matriz[origemIndex][destinoIndex] += 2;
+				} else {
+					matriz[origemIndex][destinoIndex]++;
+					matriz[destinoIndex][origemIndex]++;
+				}
+			}
+		}
+
+		System.out.println("Matriz de adjacencia:");
+		imprimirMatrizQuadrada(matriz, vertices);
+	}
+
+	public void exibeMatrizIncidencia() {
+		int n = vertices.size();
+		int m = arestas.size();
+		int[][] matriz = new int[n][m];
+
+		for (int j = 0; j < arestas.size(); j++) {
+			Aresta a = arestas.get(j);
+			int origemIndex = vertices.indexOf(a.getVerticeOrigem());
+			int destinoIndex = vertices.indexOf(a.getVerticeDestino());
+			if (origemIndex < 0 || destinoIndex < 0) {
+				continue;
+			}
+
+			if (eDirigido) {
+				if (origemIndex == destinoIndex) {
+					matriz[origemIndex][j] = 2;
+				} else {
+					matriz[origemIndex][j] = -1;
+					matriz[destinoIndex][j] = 1;
+				}
+			} else {
+				if (origemIndex == destinoIndex) {
+					matriz[origemIndex][j] = 2;
+				} else {
+					matriz[origemIndex][j] = 1;
+					matriz[destinoIndex][j] = 1;
+				}
+			}
+		}
+
+		System.out.println("Matriz de incidencia:");
+		imprimirMatrizIncidencia(matriz, vertices, arestas);
+	}
+
+	private void imprimirMatrizQuadrada(int[][] matriz, List<Vertice> listaVertices) {
+		int largura = larguraColunaVertices(listaVertices);
+		StringBuilder header = new StringBuilder();
+		header.append(String.format("%" + largura + "s", ""));
+		for (Vertice v : listaVertices) {
+			header.append(" ").append(String.format("%" + largura + "s", v.getValorVertice()));
+		}
+		System.out.println(header);
+
+		for (int i = 0; i < matriz.length; i++) {
+			StringBuilder linha = new StringBuilder();
+			linha.append(String.format("%" + largura + "s", listaVertices.get(i).getValorVertice()));
+			for (int j = 0; j < matriz[i].length; j++) {
+				linha.append(" ").append(String.format("%" + largura + "d", matriz[i][j]));
+			}
+			System.out.println(linha);
+		}
+	}
+
+	private void imprimirMatrizIncidencia(int[][] matriz, List<Vertice> listaVertices, List<Aresta> listaArestas) {
+		int largura = Math.max(larguraColunaVertices(listaVertices), larguraColunaArestas(listaArestas));
+		StringBuilder header = new StringBuilder();
+		header.append(String.format("%" + largura + "s", ""));
+		for (int j = 0; j < listaArestas.size(); j++) {
+			String nome = nomeArestaExibicao(listaArestas.get(j), j);
+			header.append(" ").append(String.format("%" + largura + "s", nome));
+		}
+		System.out.println(header);
+
+		for (int i = 0; i < matriz.length; i++) {
+			StringBuilder linha = new StringBuilder();
+			linha.append(String.format("%" + largura + "s", listaVertices.get(i).getValorVertice()));
+			for (int j = 0; j < matriz[i].length; j++) {
+				linha.append(" ").append(String.format("%" + largura + "d", matriz[i][j]));
+			}
+			System.out.println(linha);
+		}
+	}
+
+	private int larguraColunaVertices(List<Vertice> listaVertices) {
+		int largura = 3;
+		for (Vertice v : listaVertices) {
+			if (v.getValorVertice() != null) {
+				largura = Math.max(largura, v.getValorVertice().length());
+			}
+		}
+		return largura;
+	}
+
+	private int larguraColunaArestas(List<Aresta> listaArestas) {
+		int largura = 3;
+		for (int i = 0; i < listaArestas.size(); i++) {
+			String nome = nomeArestaExibicao(listaArestas.get(i), i);
+			largura = Math.max(largura, nome.length());
+		}
+		return largura;
+	}
+
+	private String nomeArestaExibicao(Aresta aresta, int index) {
+		String nomeAresta = aresta.getNomeA();
+		if (nomeAresta == null || nomeAresta.isBlank()) {
+			return "e" + (index + 1);
+		}
+		return nomeAresta;
+	}
 	
 	@Override
 	public String toString() {
